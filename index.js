@@ -231,19 +231,29 @@ function isEmail(value) {
 
 // hàm kiểm tra lương
 function checkBasicSalary(salary) {
-  if (salary < 1000000 || salary > 20000000) {
-    return false;
+  var regex = /^\d+$/; // Biểu thức chính quy kiểm tra chuỗi là một số hoàn toàn
+  if (regex.test(salary)) {
+    if (salary < 1000000 || salary > 20000000) {
+      return false;
+    } else {
+      return true;
+    }
   } else {
-    return true;
+    return false;
   }
 }
 
 // hàm kiểm giờ làm
 function checkTimeWork(timework) {
-  if (timework < 80 || timework > 200) {
-    return false;
+  var regex = /^\d+$/; // Biểu thức chính quy kiểm tra chuỗi là một số hoàn toàn
+  if (regex.test(timework)) {
+    if (timework < 80 || timework > 200) {
+      return false;
+    } else {
+      return true;
+    }
   } else {
-    return true;
+    return false;
   }
 }
 
@@ -289,7 +299,8 @@ function validate() {
     getElement("tbMatKhau").innerHTML = "Mật khẩu không được để trống";
   } else if (!isPassword(password)) {
     isValid = false;
-    getElement("tbMatKhau").innerHTML = "Vui lòng nhập mật khẩu đúng quy định";
+    getElement("tbMatKhau").innerHTML =
+      "Quy định mật khẩu: mật Khẩu từ 6-10 ký tự (chứa ít nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt), không để trống";
   }
 
   if (!isRequired(daysOfWork)) {
@@ -303,7 +314,7 @@ function validate() {
   } else if (!checkBasicSalary(basicSalary)) {
     isValid = false;
     getElement("tbLuongCB").innerHTML =
-      "Vui lòng nhập lương cơ bản từ 1.000.000 đến 20.000.000";
+      "Vui lòng nhập SỐ lương cơ bản từ 1.000.000 đến 20.000.000";
   }
 
   if (!isRequired(position)) {
@@ -320,7 +331,7 @@ function validate() {
   } else if (!checkTimeWork(timesOfWork)) {
     isValid = false;
     getElement("tbGiolam").innerHTML =
-      "Vui lòng nhập giờ làm từ 80 đến 200 giờ";
+      "Vui lòng nhập SỐ giờ làm từ 80 đến 200 giờ";
   }
 
   if (isValid) {
